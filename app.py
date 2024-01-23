@@ -64,6 +64,10 @@ elif page == "Charts":
         # Perform inference
         predictions = model.predict(test_image)
 
+        # Get predicted class index and probability after inference
+        predicted_class_index = np.argmax(predictions)
+        predicted_class_probability = predictions[0][predicted_class_index] * 100
+
         # Create a vertical bar chart with only predicted class and percentage
-        chart_data = {'Predicted Class': class_labels[predicted_class_index], 'Model Percentage': predicted_class_probability}
+        chart_data = {'Predicted Class': [class_labels[predicted_class_index]], 'Model Percentage': [predicted_class_probability]}
         st.bar_chart(chart_data, use_container_width=True, height=400)

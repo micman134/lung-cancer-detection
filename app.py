@@ -9,11 +9,11 @@ try:
 except Exception as e:
     st.error(f"Error loading the model: {str(e)}")
 
-# Define the class labels
-class_labels = ['Adenocarcinoma', 'Large cell carcinoma', 'Squamous cell carcinoma', 'Normal, No cancer']
+# Define the relatable class labels
+class_labels = ['Adenocarcinoma', 'Large Cell Carcinoma', 'Flat Cell Lung Cancer', 'No Cancer']
 
 # Streamlit app
-st.title("Lung Cancer Detection App")
+st.title("Lung Cancer Detection")
 
 # Upload image through Streamlit
 uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
@@ -32,7 +32,9 @@ if uploaded_file is not None:
 
         # Perform inference
         predictions = model.predict(test_image)
-        predicted_class = np.argmax(predictions)
+        predicted_class_index = np.argmax(predictions)
+        predicted_class_label = class_labels[predicted_class_index]
+        predicted_class_probability = predictions[0][predicted_class_index] * 100
 
         # Display the uploaded image
         st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
@@ -40,7 +42,8 @@ if uploaded_file is not None:
         # Display probability scores for each class
         st.write("Class Probabilities:")
         for i, label in enumerate(class_labels):
-            st.write(f"{label}: {predictions[0][i]:.4f}")
+            probability_percentage = predictions[0][i] * 100
+            st.write(f"{label}: {probability_percentage:.2f}%")
 
-        # Print the classification label
-        st.success(f'Predicted Class: {class_labels[predicted_class]}')
+        # Print the classification label with probability
+        st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')

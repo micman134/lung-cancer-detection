@@ -10,7 +10,7 @@ except Exception as e:
     st.error(f"Error loading the model: {str(e)}")
 
 # Define the class labels
-class_labels = ['Adenocarcinoma', 'Largecellcarcinoma', 'Squamouscellcarcinoma', 'Normal']
+class_labels = ['Adenocarcinoma', 'Large cell carcinoma', 'Squamous cell carcinoma', 'Normal, No cancer']
 
 # Streamlit app
 st.title("Lung Cancer Detection App")

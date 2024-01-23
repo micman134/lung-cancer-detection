@@ -2,7 +2,6 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Load the saved model
 try:
@@ -54,7 +53,7 @@ if page == "Prediction":
             st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
 
 elif page == "Charts":
-    # Display a histogram of model percentages
+    # Display a vertical bar chart of model percentages
     if uploaded_file is not None:
         # Load and preprocess the test image
         test_image = image.load_img(uploaded_file, target_size=(150, 150))
@@ -65,14 +64,6 @@ elif page == "Charts":
         # Perform inference
         predictions = model.predict(test_image)
 
-        # Get predicted class index and probability after inference
-        predicted_class_index = np.argmax(predictions)
-        predicted_class_probability = predictions[0][predicted_class_index] * 100
-
-        # Create a histogram with only predicted class and percentage
-        plt.figure(figsize=(8, 6))
-        plt.bar(class_labels[predicted_class_index], predicted_class_probability, color='blue')
-        plt.xlabel('Predicted Class')
-        plt.ylabel('Model Percentage')
-        plt.title('Model Percentage for Predicted Class')
-        st.pyplot(plt)
+        # Create a vertical bar chart
+        chart_data = {'Predicted Class': class_labels, 'Model Percentage': predictions[0] * 100}
+        st.bar_chart(chart_data, use_container_width=True, height=400)

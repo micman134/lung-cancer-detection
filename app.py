@@ -53,7 +53,7 @@ if page == "Prediction":
             st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
 
 elif page == "Charts":
-    # Display a horizontal bar chart of model percentages
+    # Display a vertical bar chart of model percentages
     if uploaded_file is not None:
         # Load and preprocess the test image
         test_image = image.load_img(uploaded_file, target_size=(150, 150))
@@ -64,6 +64,6 @@ elif page == "Charts":
         # Perform inference
         predictions = model.predict(test_image)
 
-        # Create a horizontal bar chart
-        chart_data = {'Model Percentage': predictions[0] * 100, 'Class Labels': class_labels}
+        # Create a vertical bar chart
+        chart_data = {'Predicted Class': class_labels, 'Model Percentage': predictions[0] * 100}
         st.bar_chart(chart_data, use_container_width=True, height=400)

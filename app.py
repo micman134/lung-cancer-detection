@@ -24,6 +24,10 @@ page = st.sidebar.selectbox("Choose a page", ["Prediction", "Performance Analysi
 # Upload image through Streamlit
 uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
 
+# Model performance analysis
+true_classes = []
+predicted_classes = []
+
 if page == "Prediction":
     if uploaded_file is not None:
         # Load and preprocess the test image
@@ -51,7 +55,11 @@ if page == "Prediction":
         st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
 
 elif page == "Performance Analysis":
-    if uploaded_file is not None:
+    while True:
+        uploaded_file = st.file_uploader("Choose a test image (or finish to analyze):", type=["jpg", "jpeg", "png"])
+        if uploaded_file is None:
+            break
+
         # Load and preprocess the test image
         test_image = image.load_img(uploaded_file, target_size=(150, 150))
         test_image = image.img_to_array(test_image)
@@ -65,20 +73,19 @@ elif page == "Performance Analysis":
         predicted_class_index = np.argmax(predictions)
         predicted_class_probability = predictions[0][predicted_class_index] * 100
 
-        # Model performance analysis
         true_class = st.radio("Select the true class of the uploaded image:", class_labels)
         true_class_index = class_labels.index(true_class)
 
-        # Confusion Matrix
-        y_true = [true_class_index]
-        y_pred = [predicted_class_index]
+        true_classes.append(true_class_index)
+        predicted_classes.append(predicted_class_index)
 
-        cm = confusion_matrix(y_true, y_pred)
+    # After processing all images
+    if true_classes and predicted_classes:
+        cm = confusion_matrix(true_classes, predicted_classes)
         st.write("Confusion Matrix:")
         st.write(cm)
 
-        # Classification Report
-        cr = classification_report(y_true, y_pred, target_names=class_labels)
+        cr = classification_report(true_classes, predicted_classes, target_names=class_labels)
         st.write("Classification Report:")
         st.text_area(" ", cr)
 

@@ -55,8 +55,6 @@ if page == "Prediction":
         st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
 
 elif page == "Performance Analysis":
-    uploaded_files = st.file_uploader("Choose test images (or finish to analyze):", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
-
     for uploaded_file in uploaded_files:
         # Load and preprocess the test image
         test_image = image.load_img(uploaded_file, target_size=(150, 150))

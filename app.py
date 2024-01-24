@@ -64,20 +64,25 @@ if uploaded_file is not None:
         y_true = [true_class_index]
         y_pred = [predicted_class_index]
 
-        # Confusion Matrix
-        cm = confusion_matrix(y_true, y_pred)
-        st.write("Confusion Matrix:")
-        st.write(cm)
+        # Sub-navigation for performance analysis
+        analysis_option = st.radio("Select analysis option", ["Confusion Matrix", "Classification Report"])
 
-        # Classification Report
-        cr = classification_report(y_true, y_pred, labels=np.unique(y_true + y_pred), target_names=class_labels)
-        st.write("Classification Report:")
-        st.text_area(" ", cr)
+        if analysis_option == "Confusion Matrix":
+            # Confusion Matrix
+            cm = confusion_matrix(y_true, y_pred)
+            st.write("Confusion Matrix:")
+            st.write(cm)
 
-        # Display a heatmap of the confusion matrix
-        plt.figure(figsize=(8, 6))
-        sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
-        plt.title('Confusion Matrix')
-        st.pyplot(plt)
+            # Display a heatmap of the confusion matrix
+            plt.figure(figsize=(8, 6))
+            sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
+            plt.xlabel('Predicted')
+            plt.ylabel('True')
+            plt.title('Confusion Matrix')
+            st.pyplot(plt)
+
+        elif analysis_option == "Classification Report":
+            # Classification Report
+            cr = classification_report(y_true, y_pred, labels=np.unique(y_true + y_pred), target_names=class_labels)
+            st.write("Classification Report:")
+            st.text_area(" ", cr)

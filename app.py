@@ -44,9 +44,8 @@ if uploaded_file is not None:
 
         # Display probability scores for each class
         st.write("Class Probabilities:")
-        for i, label in enumerate(class_labels):
-            probability_percentage = predictions[0][i] * 100
-            st.write(f"{label}: {probability_percentage:.2f}%")
+        for label, probability in zip(class_labels, predictions[0] * 100):
+            st.write(f"{label}: {probability:.2f}%")
 
         # Print the classification label with probability
         st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')

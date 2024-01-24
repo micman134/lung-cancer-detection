@@ -71,7 +71,7 @@ if uploaded_file is not None:
         st.write(cm)
 
         # Classification Report
-        cr = classification_report(y_true, y_pred, target_names=class_labels)
+        cr = classification_report(y_true, y_pred, labels=np.unique(y_true + y_pred), target_names=class_labels)
         st.write("Classification Report:")
         st.text_area(" ", cr)
 

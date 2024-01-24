@@ -21,11 +21,12 @@ st.title("Lung Cancer Detection App")
 # Sidebar navigation
 page = st.sidebar.selectbox("Choose a page", ["Prediction", "Performance Analysis"])
 
-# Upload image through Streamlit
-uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
 
 # Model performance analysis
 if uploaded_file is not None:
+    # Upload image through Streamlit
+    uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
+    
     # Load and preprocess the test image
     test_image = image.load_img(uploaded_file, target_size=(150, 150))
     test_image = image.img_to_array(test_image)

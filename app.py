@@ -52,37 +52,4 @@ if uploaded_file is not None:
 
     elif page == "Performance Analysis":
         # Perform inference for performance analysis
-        predictions = model.predict(test_image)
-
-        # Get predicted class index and probability after inference
-        predicted_class_index = np.argmax(predictions)
-        predicted_class_probability = predictions[0][predicted_class_index] * 100
-
-        true_class = st.radio("Select the true class of the uploaded image:", class_labels)
-        true_class_index = class_labels.index(true_class)
-
-        y_true = [true_class_index]
-        y_pred = [predicted_class_index]
-
-        # Sub-navigation for performance analysis
-        analysis_option = st.radio("Select analysis option", ["Confusion Matrix", "Classification Report"])
-
-        if analysis_option == "Confusion Matrix":
-            # Confusion Matrix
-            cm = confusion_matrix(y_true, y_pred)
-            st.write("Confusion Matrix:")
-            st.write(cm)
-
-            # Display a heatmap of the confusion matrix
-            plt.figure(figsize=(8, 6))
-            sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
-            plt.xlabel('Predicted')
-            plt.ylabel('True')
-            plt.title('Confusion Matrix')
-            st.pyplot(plt)
-
-        elif analysis_option == "Classification Report":
-            # Classification Report
-            cr = classification_report(y_true, y_pred, labels=np.unique(y_true + y_pred), target_names=class_labels)
-            st.write("Classification Report:")
-            st.text_area(" ", cr)
+        st.image('confusion_matrix.png', caption="Uploaded Image", use_column_width=True)

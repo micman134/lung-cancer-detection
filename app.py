@@ -52,13 +52,13 @@ if page == "Prediction":
 elif page == "Performance Analysis":
     # Perform inference for performance analysis
     st.subheader("Model Performance Analysis")
-    st.caption("Performance Analysis For Normal Lungs")
+    st.text("Performance Analysis For Normal Lungs")
     st.image('normal.png', caption="Confusion Matrix", use_column_width=True)
-    st.caption("Performance Analysis For Large cell carcinoma Cancer")
+    st.text("Performance Analysis For Large cell carcinoma Cancer")
     st.image('large.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
-    st.caption("Performance Analysis For Squamous cell carcinoma Cancer")
+    st.text("Performance Analysis For Squamous cell carcinoma Cancer")
     st.image('squamous.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
-    st.caption("Performance Analysis For Adenocarcinoma Cancer")
+    st.text("Performance Analysis For Adenocarcinoma Cancer")
     st.image('adenocarcinoma.png', caption="Confusion Matrix", use_column_width=True)
     st.subheader("Model Confusion Matrix")
     st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)

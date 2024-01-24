@@ -57,7 +57,8 @@ elif page == "Performance Analysis":
     st.image('large.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
     st.image('squamous.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
     st.image('adenocarcinoma.png', caption="Confusion Matrix", use_column_width=True)
-
+    
+    st.divider()
     st.subheader("Model Confusion Matrix")
     st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)
 

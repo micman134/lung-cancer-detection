@@ -89,4 +89,14 @@ elif page == "Performance Analysis":
             st.write("Confusion Matrix:")
             st.write(cm)
 
-            cr = classification_report(true_classes, predicted_classes, target_names=
+            cr = classification_report(true_classes, predicted_classes, target_names=class_labels)
+            st.write("Classification Report:")
+            st.text_area(" ", cr)
+
+            # Display a heatmap of the confusion matrix
+            plt.figure(figsize=(8, 6))
+            sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
+            plt.xlabel('Predicted')
+            plt.ylabel('True')
+            plt.title('Confusion Matrix')
+            st.pyplot(plt)

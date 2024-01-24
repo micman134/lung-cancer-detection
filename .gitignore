@@ -17,3 +17,30 @@
 .viminfo
 .vscode/
 .wdm/
+3D Objects/
+AppData/
+Contacts/
+Desktop/
+Documents/
+Downloads/
+Favorites/
+High-Blood-Pressure.dot
+Links/
+MicrosoftEdgeBackups/
+Music/
+NTUSER.DAT
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TM.blf
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000001.regtrans-ms
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000002.regtrans-ms
+Pictures/
+Saved Games/
+Searches/
+Untitled.ipynb
+Videos/
+anaconda3/
+h/
+hello.ipynb
+model/
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+ntuser.ini

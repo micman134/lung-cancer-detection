@@ -6,7 +6,6 @@
 .conda/
 .condarc
 .continuum/
-.gitconfig
 .idlerc/
 .ipynb_checkpoints/
 .ipython/

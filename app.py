@@ -51,4 +51,5 @@ if page == "Prediction":
 
 elif page == "Performance Analysis":
     # Perform inference for performance analysis
+    st.write("Model Confusion Matrix")
     st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)

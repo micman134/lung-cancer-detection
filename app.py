@@ -55,7 +55,9 @@ if page == "Prediction":
         st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
 
 elif page == "Performance Analysis":
-    if uploaded_file is not None:
+    uploaded_files = st.file_uploader("Choose test images (or finish to analyze):", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
+
+    for uploaded_file in uploaded_files:
         # Load and preprocess the test image
         test_image = image.load_img(uploaded_file, target_size=(150, 150))
         test_image = image.img_to_array(test_image)
@@ -77,18 +79,14 @@ elif page == "Performance Analysis":
 
     # After processing all images
     if true_classes and predicted_classes:
-        cm = confusion_matrix(true_classes, predicted_classes)
-        st.write("Confusion Matrix:")
-        st.write(cm)
+        unique_true_classes = np.unique(true_classes)
+        unique_predicted_classes = np.unique(predicted_classes)
 
-        cr = classification_report(true_classes, predicted_classes, target_names=class_labels)
-        st.write("Classification Report:")
-        st.text_area(" ", cr)
+        if len(unique_true_classes) != len(class_labels) or len(unique_predicted_classes) != len(class_labels):
+            st.warning("Number of unique classes does not match the expected number.")
+        else:
+            cm = confusion_matrix(true_classes, predicted_classes)
+            st.write("Confusion Matrix:")
+            st.write(cm)
 
-        # Display a heatmap of the confusion matrix
-        plt.figure(figsize=(8, 6))
-        sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', xticklabels=class_labels, yticklabels=class_labels)
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
-        plt.title('Confusion Matrix')
-        st.pyplot(plt)
+            cr = classification_report(true_classes, predicted_classes, target_names=

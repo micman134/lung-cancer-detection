@@ -15,10 +15,10 @@ except Exception as e:
 class_labels = ['adenocarcinoma', 'large.cell.carcinoma', 'squamous.cell.carcinoma', 'normal']
 
 # Streamlit app
-st.title("Lung Cancer Detection App")
+st.title("Lung Cancer Detection")
 
 # Sidebar navigation
-page = st.sidebar.selectbox("Choose a page", ["Prediction", "Performance Analysis"])
+page = st.sidebar.selectbox("Navbar", ["Prediction", "Performance Analysis"])
 
 if page == "Prediction":
     # Upload image through Streamlit

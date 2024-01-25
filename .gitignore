@@ -1,4 +1,30 @@
-/blog
+Links/
+MicrosoftEdgeBackups/
+Music/
+NTUSER.DAT
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TM.blf
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000001.regtrans-ms
+NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000002.regtrans-ms
+Pictures/
+Saved Games/
+Searches/
+Untitled.ipynb
+Videos/
+anaconda3/
+blog/
+h/
+hello.ipynb
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+ntuser.ini
+3D Objects/
+AppData/
+Contacts/
+Desktop/
+Documents/
+Downloads/
+Favorites/
+High-Blood-Pressure.dot
 .Protege/
 .anaconda/
 .bash_history
@@ -13,36 +39,10 @@
 .lesshst
 .matplotlib/
 .node_repl_history
+.ssh/
 .viminfo
 .vscode/
 .wdm/
-3D Objects/
-AppData/
-Contacts/
-Desktop/
-Documents/
-Downloads/
-Favorites/
-High-Blood-Pressure.dot
-Links/
-MicrosoftEdgeBackups/
-Music/
-NTUSER.DAT
-NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TM.blf
-NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000001.regtrans-ms
-NTUSER.DAT{fd9a35db-49fe-11e9-aa2c-248a07783950}.TMContainer00000000000000000002.regtrans-ms
-Pictures/
-Saved Games/
-Searches/
-Untitled.ipynb
-Videos/
-anaconda3/
-h/
-hello.ipynb
-model/
-ntuser.dat.LOG1
-ntuser.dat.LOG2
-ntuser.ini
 Application Data/
 Cookies/
 Local Settings/
@@ -53,5 +53,3 @@ Recent/
 SendTo/
 Start Menu/
 Templates/
-
-

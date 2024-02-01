@@ -3,12 +3,16 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
 
-# Load the saved model
-model = None
-try:
-    model = tf.keras.models.load_model('cancer_detection_model.h5')
-except Exception as e:
-    st.error(f"Error loading the model: {str(e)}")
+# Function to load the model
+def load_model():
+    try:
+        return tf.keras.models.load_model('cancer_detection_model.h5')
+    except Exception as e:
+        st.error(f"Error loading the model: {str(e)}")
+        return None
+
+# Load the model
+model = load_model()
 
 # Define the relatable class labels
 class_labels = ['adenocarcinoma', 'large.cell.carcinoma', 'squamous.cell.carcinoma', 'normal']

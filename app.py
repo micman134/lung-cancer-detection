@@ -3,32 +3,27 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
 
-# Function to load the model
-def load_model():
-    try:
-        return tf.keras.models.load_model('cancer_detection_model.h5')
-    except Exception as e:
-        st.error(f"Error loading the model: {str(e)}")
-        return None
+# Load the saved model
+model = tf.keras.models.load_model('cancer_detection_model.h5')
 
-# Load the model
-model = load_model()
+# Check if the model loaded successfully
+if model is None:
+    st.error("Error loading the model. Please check the model file.")
+else:
+    # Define the relatable class labels
+    class_labels = ['adenocarcinoma', 'large.cell.carcinoma', 'squamous.cell.carcinoma', 'normal']
 
-# Define the relatable class labels
-class_labels = ['adenocarcinoma', 'large.cell.carcinoma', 'squamous.cell.carcinoma', 'normal']
+    # Streamlit app
+    st.title("Lung Cancer Detection")
 
-# Streamlit app
-st.title("Lung Cancer Detection")
+    # Sidebar navigation
+    page = st.sidebar.selectbox("Navbar", ["Prediction", "Performance Analysis"])
 
-# Sidebar navigation
-page = st.sidebar.selectbox("Navbar", ["Prediction", "Performance Analysis"])
+    if page == "Prediction":
+        # Upload image through Streamlit
+        uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
 
-if page == "Prediction":
-    # Upload image through Streamlit
-    uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
-
-    # Model performance analysis
-    try:
+        # Model performance analysis
         if uploaded_file is not None:
             # Load and preprocess the test image
             test_image = image.load_img(uploaded_file, target_size=(150, 150))
@@ -52,16 +47,14 @@ if page == "Prediction":
 
             # Print the classification label with probability
             st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
-    except Exception as e:
-        st.error(f"Error during prediction: {str(e)}")
 
-elif page == "Performance Analysis":
-    # Perform inference for performance analysis
-    # (Assuming the images and matrices are in the same directory as the script)
-    performance_images = ['normal.png', 'large.cell.carcinoma.png', 'squamous.cell.carcinoma.png', 'adenocarcinoma.png']
-    for cancer_type, image_path in zip(class_labels, performance_images):
-        st.subheader(f"Performance Analysis For {cancer_type} Cancer")
-        st.image(image_path, caption="Confusion Matrix", use_column_width=True)
+    elif page == "Performance Analysis":
+        # Perform inference for performance analysis
+        # (Assuming the images and matrices are in the same directory as the script)
+        performance_images = ['normal.png', 'large.cell.carcinoma.png', 'squamous.cell.carcinoma.png', 'adenocarcinoma.png']
+        for cancer_type, image_path in zip(class_labels, performance_images):
+            st.subheader(f"Performance Analysis For {cancer_type} Cancer")
+            st.image(image_path, caption="Confusion Matrix", use_column_width=True)
 
-    st.subheader("Model Confusion Matrix")
-    st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)
+        st.subheader("Model Confusion Matrix")
+        st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)

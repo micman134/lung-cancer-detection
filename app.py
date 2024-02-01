@@ -2,6 +2,8 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load the saved model
 model = tf.keras.models.load_model('cancer_detection_model.h5')
@@ -22,7 +24,7 @@ else:
     if page == "Prediction":
         # Upload image through Streamlit
         uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
-
+        
         # Model performance analysis
         if uploaded_file is not None:
             # Load and preprocess the test image
@@ -50,11 +52,14 @@ else:
 
     elif page == "Performance Analysis":
         # Perform inference for performance analysis
-        # (Assuming the images and matrices are in the same directory as the script)
-        performance_images = ['normal.png', 'large.cell.carcinoma.png', 'squamous.cell.carcinoma.png', 'adenocarcinoma.png']
-        for cancer_type, image_path in zip(class_labels, performance_images):
-            st.subheader(f"Performance Analysis For {cancer_type} Cancer")
-            st.image(image_path, caption="Confusion Matrix", use_column_width=True)
-
+        st.subheader("Model Performance Analysis")
+        st.text("Performance Analysis For Normal Lungs")
+        st.image('normal.png', caption="Confusion Matrix", use_column_width=True)
+        st.text("Performance Analysis For Large cell carcinoma Cancer")
+        st.image('large.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
+        st.text("Performance Analysis For Squamous cell carcinoma Cancer")
+        st.image('squamous.cell.carcinoma.png', caption="Confusion Matrix", use_column_width=True)
+        st.text("Performance Analysis For Adenocarcinoma Cancer")
+        st.image('adenocarcinoma.png', caption="Confusion Matrix", use_column_width=True)
         st.subheader("Model Confusion Matrix")
         st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)

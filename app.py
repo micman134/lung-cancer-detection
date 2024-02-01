@@ -24,8 +24,8 @@ if page == "Prediction":
     uploaded_file = st.file_uploader("Choose a test image...", type=["jpg", "jpeg", "png"])
 
     # Model performance analysis
-    if uploaded_file is not None:
-        try:
+    try:
+        if uploaded_file is not None:
             # Load and preprocess the test image
             test_image = image.load_img(uploaded_file, target_size=(150, 150))
             test_image = image.img_to_array(test_image)
@@ -48,8 +48,8 @@ if page == "Prediction":
 
             # Print the classification label with probability
             st.success(f'Predicted Class: {predicted_class_label} with {predicted_class_probability:.2f}% probability')
-        except Exception as e:
-            st.error(f"Error during prediction: {str(e)}")
+    except Exception as e:
+        st.error(f"Error during prediction: {str(e)}")
 
 elif page == "Performance Analysis":
     # Perform inference for performance analysis

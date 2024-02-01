@@ -61,4 +61,4 @@ elif page == "Performance Analysis":
     st.text("Performance Analysis For Adenocarcinoma Cancer")
     st.image('adenocarcinoma.png', caption="Confusion Matrix", use_column_width=True)
     st.subheader("Model Confusion Matrix")
-    st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)￼Enter
+    st.image('confusion_matrix.png', caption="Confusion Matrix", use_column_width=True)

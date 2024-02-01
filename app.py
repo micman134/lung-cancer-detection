@@ -6,7 +6,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load the saved model
-model = tf.keras.models.load_model('cancer_detection_model.h5')
+try:
+    model = tf.keras.models.load_model('cancer_detection_model.h5')
+except Exception as e:
+    st.error(f"Error loading the model: {str(e)}")
 
 # Define the relatable class labels
 class_labels = ['adenocarcinoma', 'large.cell.carcinoma', 'squamous.cell.carcinoma', 'normal']
